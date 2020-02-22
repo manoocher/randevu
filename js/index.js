@@ -47,7 +47,7 @@ function handleDataBolum(data) {
     });
 }
 
-// function to get data for dr list
+// function to get data for drlist
 function handleDataDr(data) {
     var obj = JSON.parse(data.result);
     var drlist = obj.dr_list;
