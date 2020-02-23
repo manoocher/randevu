@@ -1,92 +1,194 @@
-<html lang="tr">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ESonuc</title>
+    <title>Multi Step Bootstrap Form with animations</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 mx-auto">
 
-                <form class="needs-validation" novalidate>
-                    <img class="rounded mx-auto d-block" src="images/logo.png" alt="Medisis Hastanesi Logo">
-                    <h4>ONLİNE LABORATUVAR SİSTEMİ</h4>
-
-                    <div class="form-row">
-                        <div class="col-md-8 mb-8">
-                            <label for="validationCustom04">Bolum</label>
-                            <select class="custom-select bolum" id="bolum" required>
-                                <option selected disabled value="">Seciniz...</option>
-
-                            </select>
-                            <div class="invalid-feedback">
-                                Please select a valid state.
+    <div class="content">
+        <!--content inner-->
+        <div class="content__inner">
+            <div class="container">
+                <!--content title-->
+                <div class="logo">
+                    <img src="images/logo.png" alt="" class="img-thumbnail mx-auto d-block">
+                </div>
+                <!--content title-->
+            </div>
+            <div class="container overflow-hidden">
+                <!--multisteps-form-->
+                <div class="multisteps-form">
+                    <!--progress bar-->
+                    <div class="row">
+                        <div class="col-12 col-lg-8 ml-auto mr-auto mb-4">
+                            <div class="multisteps-form__progress">
+                                <button class="multisteps-form__progress-btn js-active" type="button" title="User Info">1. Service</button>
+                                <button class="multisteps-form__progress-btn" type="button" title="Address">2. Time</button>
+                                <button class="multisteps-form__progress-btn" type="button" title="Order Info">3. Detail</button>
+                                <button class="multisteps-form__progress-btn" type="button" title="Comments">4.Done </button>
                             </div>
                         </div>
-
-                        <div class="col-md-8 mb-8">
-                            <label for="validationCustom04">Dr.</label>
-                            <select class="custom-select dr" id="bolum" required>
-                                <option selected disabled value="">Seciniz...</option>
-
-                            </select>
-                            <div class="invalid-feedback">
-                                Please select a valid state.
-                            </div>
-                        </div>
-
-
-                        <button class="btn btn-primary" type="submit">Submit form</button>
-
-
                     </div>
+                    <!--form panels-->
+                    <div class="row">
+                        <div class="col-12 col-lg-8 m-auto">
+                            <form class="multisteps-form__form">
+                                <!--single form panel-->
+                                <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="scaleIn">
+                                    <h3 class="multisteps-form__title">Your User Info</h3>
+                                    <div class="multisteps-form__content">
+                                        <div class="form-row mt-4">
+                                            <div class="col-12 col-sm-6">
+                                                <select class="custom-select mb-3 mt-4 bolum">
+                                                <option value=" " selected="selected">Bolum Sec</option>
+
+                                              </select>
+                                                <select class="custom-select custom mb-3 mt-4 dr">
+                                                <option value="" selected="selected">Dr Sec</option>
+
+                                              </select>
+                                                <select class="custom-select mb-3 mt-4 kurum">
+                                                <option value="scaleIn" selected="selected">Kurum Sec</option>
+
+                                              </select>
+                                            </div>
+                                            <div class="col-12 col-sm-6" id="tarih">
+                                                <div></div>
+                                            </div>
+
+                                        </div>
 
 
-
-
-
-                </form>
-
-                <script>
-                    // Example starter JavaScript for disabling form submissions if there are invalid fields
-                    (function() {
-                        'use strict';
-                        window.addEventListener('load', function() {
-                            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                            var forms = document.getElementsByClassName('needs-validation');
-                            // Loop over them and prevent submission
-                            var validation = Array.prototype.filter.call(forms, function(form) {
-                                form.addEventListener('submit', function(event) {
-                                    if (form.checkValidity() === false) {
-                                        event.preventDefault();
-                                        event.stopPropagation();
-                                    }
-                                    form.classList.add('was-validated');
-                                }, false);
-                            });
-                        }, false);
-                    })();
-                </script>
+                                        <div class="button-row d-flex mt-4">
+                                            <button class="btn btn-primary ml-auto js-btn-next invisible" id="next" type="button" title="Next">Next</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--single form panel-->
+                                <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
+                                    <h3 class="multisteps-form__title">Your Address</h3>
+                                    <div class="multisteps-form__content">
+                                        <div class="form-row mt-4">
+                                            <div class="col">
+                                                <input class="multisteps-form__input form-control" type="text" placeholder="Address 1" />
+                                            </div>
+                                        </div>
+                                        <div class="form-row mt-4">
+                                            <div class="col">
+                                                <input class="multisteps-form__input form-control" type="text" placeholder="Address 2" />
+                                            </div>
+                                        </div>
+                                        <div class="form-row mt-4">
+                                            <div class="col-12 col-sm-6">
+                                                <input class="multisteps-form__input form-control" type="text" placeholder="City" />
+                                            </div>
+                                            <div class="col-6 col-sm-3 mt-4 mt-sm-0">
+                                                <select class="multisteps-form__select form-control">
+                        <option selected="selected">State...</option>
+                        <option>...</option>
+                      </select>
+                                            </div>
+                                            <div class="col-6 col-sm-3 mt-4 mt-sm-0">
+                                                <input class="multisteps-form__input form-control" type="text" placeholder="Zip" />
+                                            </div>
+                                        </div>
+                                        <div class="button-row d-flex mt-4">
+                                            <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
+                                            <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--single form panel-->
+                                <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
+                                    <h3 class="multisteps-form__title">Your Order Info</h3>
+                                    <div class="multisteps-form__content">
+                                        <div class="row">
+                                                <div class="col-12 col-md-6 mt-4">
+                                                        <div class="card shadow-sm">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title">Item Title</h5>
+                                                                <p class="card-text">Small and nice item description</p><a class="btn btn-primary" href="#" title="Item Link">Item Link</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6 mt-4">
+                                                            <div class="card shadow-sm">
+                                                                <div class="card-body">
+                                                                    <h5 class="card-title">Item Title</h5>
+                                                                    <p class="card-text">Small and nice item description</p><a class="btn btn-primary" href="#" title="Item Link">Item Link</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-6 mt-4">
+                                                                <div class="card shadow-sm">
+                                                                    <div class="card-body">
+                                                                        <h5 class="card-title">Item Title</h5>
+                                                                        <p class="card-text">Small and nice item description</p><a class="btn btn-primary" href="#" title="Item Link">Item Link</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                            <div class="col-12 col-md-6 mt-4">
+                                                <div class="card shadow-sm">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Item Title</h5>
+                                                        <p class="card-text">Small and nice item description</p><a class="btn btn-primary" href="#" title="Item Link">Item Link</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 mt-4">
+                                                <div class="card shadow-sm">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Item Title</h5>
+                                                        <p class="card-text">Small and nice item description</p><a class="btn btn-primary" href="#" title="Item Link">Item Link</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="button-row d-flex mt-4 col-12">
+                                                <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
+                                                <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--single form panel-->
+                                <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
+                                    <h3 class="multisteps-form__title">Additional Comments</h3>
+                                    <div class="multisteps-form__content">
+                                        <div class="form-row mt-4">
+                                            <textarea class="multisteps-form__textarea form-control" placeholder="Additional Comments and Requirements"></textarea>
+                                        </div>
+                                        <div class="button-row d-flex mt-4">
+                                            <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
+                                            <button class="btn btn-success ml-auto" type="button" title="Send">Send</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="js/validate.js">
-    </script>
+    <!-- partial -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.tr.min.js"></script>
+    <script src="js/script.js"></script>
     <script src="js/index.js"></script>
+
 </body>
 
 </html>
