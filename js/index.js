@@ -1,7 +1,6 @@
 var username = "sa";
 var password = "sa";
 var url = "http://volls.meddatam.com:6950/datasnap/rest/TServerMethodrandevu/";
-var finalurl = proxy + url;
 var loaded = false;
 
 $(function() {
