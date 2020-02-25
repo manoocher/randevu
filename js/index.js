@@ -4,6 +4,7 @@ var url = "http://volls.meddatam.com:6950/datasnap/rest/TServerMethodrandevu/";
 var loaded = false;
 
 $(function() {
+    var selectedDate;
     var tarih = new Date();
     var today = new Date(tarih.getFullYear(), tarih.getMonth(), tarih.getDate());
     $("#tarih")
@@ -20,11 +21,6 @@ $(function() {
         .on("changeDate", function(e) {
 
             //  console.log(currentDate);
-
-            
-
-
-
             if ($(".bolum")[0].selectedIndex <= 0) {
                 // console.log(" bolum is not  selected"); do nothing
             } else if ($(".dr")[0].selectedIndex <= 0) {
@@ -33,8 +29,8 @@ $(function() {
                 //        console.log(" opetion for kurum not selected"); do nothing
             } else {
                 // console.log(" all options are Selected");
-               
-                var selectedDate = e.format(0, "yyyy-mm-dd");
+
+                selectedDate = e.format(0, "yyyy-mm-dd");
                 var selectedDept = $(".bolum").val();
                 var selectedDr = $(".dr").val();
                 var urlrand = "get_randevu_list/1/" + selectedDept + "/" + selectedDr + "/0/0/" + selectedDate + "/";
@@ -54,7 +50,7 @@ $(function() {
                 });
 
                 function randevuSucess(randevu) {
-                    
+
                     var getRand = JSON.parse(randevu.result[0]);
                     var randList = getRand.randevu_list;
                     // console.log(getRand.randevu_list);
@@ -68,15 +64,24 @@ $(function() {
                         $("#next1").removeClass('invisible').on('click', function() {
                             var selectSira = $(".sira");
                             selectSira.empty()
-                    .append(
-                        "<option disabled='disabled' SELECTED>Saat Seçiniz</option>"
-                    );
+                                .append(
+                                    "<option disabled='disabled' SELECTED>Saat Seçiniz</option>"
+                                );
                             $.each(randList, function(i, val) {
                                 $("<option/>", {
                                     value: val.sira_no,
                                     text: val.saat
                                 }).appendTo(selectSira);
                             });
+
+                            var selectDr = $(".dr option:selected").text();
+                            var selectBo = $(".bolum option:selected").text();
+                            var selectedFullDate = e.format(0, "dd-MM-yyyy");
+                            console.log(selectDr);
+                            console.log(selectedFullDate + "'de mevcut randevular");
+                            console.log(selectBo);
+                            $('.detail').text(selectedFullDate + "'de mevcut randevular");
+                            $('.doktor').text(selectDr + ', ' + selectBo);
 
                         });
 
@@ -89,7 +94,91 @@ $(function() {
 
             }
         });
-});
+
+    jQuery.validator.addMethod("checktc", function(value, element) {
+        if (/^[1-9]{1}[0-9]{9}{0,2,4,6,8]{1}/.test(value)) {
+            return false; // FAIL validation when REGEX matches
+        } else {
+            return true; // PASS validation otherwise
+        };
+    }, "wrong nic number");
+
+    $("#randevuform").validate({
+        messages: {
+
+            name: {
+                required: "İsim gerekli"
+            },
+            last: {
+                required: "Soyadı gerekli"
+            },
+            tcid: {
+                required: "please enter TC for me"
+            },
+            telno: {
+                required: "Telefon numarası yanlış"
+            },
+            eposta: {
+                required: "e-posta yanlış"
+            },
+            resmi: {
+                required: "Bu alan gereklidir"
+            },
+            kvkk: {
+                required: ""
+            }
+        },
+        rules: {
+            name: "required",
+            last: "required",
+            tcid: {
+                checktc: true
+            },
+            resmi: "required",
+            telno: "required"
+
+        },
+        errorElement: "em",
+        errorPlacement: function(error, element) {
+            // Add the `help-block` class to the error element
+            error.addClass("help-block");
+
+            if (element.prop("type") === "checkbox") {
+                error.insertAfter(element.parent("label"));
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        highlight: function(element, errorClass, validClass) {
+            $(element).parents(".col-sm-5").addClass("has-error").removeClass("has-success");
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).parents(".col-sm-5").addClass("has-success").removeClass("has-error");
+        }
+
+    })
+
+
+    //submit for getting the list of randevu
+
+    $('#next3').on('click', function() {
+
+        if (!$("#randevuform").valid()) {
+            event.preventDefault();
+            return;
+        }
+        // var randForm = $('#randevuform');
+        //  if (!(randForm.valid())) return false;
+        console.log(selectedDate);
+
+
+
+
+    });
+
+
+
+}); //end of main function
 
 
 
