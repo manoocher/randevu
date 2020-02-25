@@ -1,8 +1,6 @@
 var username = "sa";
 var password = "sa";
 var url = "http://volls.meddatam.com:6950/datasnap/rest/TServerMethodrandevu/";
-var proxy = "https://cors-anywhere.herokuapp.com/";
-var finalurl = proxy + url;
 var loaded = false;
 
 $(function() {
@@ -23,14 +21,19 @@ $(function() {
 
             //  console.log(currentDate);
 
+            
+
+
+
             if ($(".bolum")[0].selectedIndex <= 0) {
-                // console.log(" bolum is not  selected");
+                // console.log(" bolum is not  selected"); do nothing
             } else if ($(".dr")[0].selectedIndex <= 0) {
-                // console.log(" opetion for Dr not selected");
+                // console.log(" opetion for Dr not selected"); do nothing
             } else if ($(".kurum")[0].selectedIndex <= 0) {
-                //        console.log(" opetion for kurum not selected");
+                //        console.log(" opetion for kurum not selected"); do nothing
             } else {
                 // console.log(" all options are Selected");
+               
                 var selectedDate = e.format(0, "yyyy-mm-dd");
                 var selectedDept = $(".bolum").val();
                 var selectedDr = $(".dr").val();
@@ -51,27 +54,35 @@ $(function() {
                 });
 
                 function randevuSucess(randevu) {
+                    
                     var getRand = JSON.parse(randevu.result[0]);
                     var randList = getRand.randevu_list;
                     // console.log(getRand.randevu_list);
                     if (randList <= 0) {
                         console.log('there is no available Randevu on this Day');
-                        //  $("#next").not(hasClass('invisible').addClass('invisible'));
-                        if (!$('#next').hasClass('invisible')) {
-                            $('#next').addClass('invisible');
+                        if (!$('#next1').hasClass('invisible')) {
+                            $('#next1').addClass('invisible');
                         }
                     } else {
                         console.log('here we have randevu --- enable the button');
-                        $("#next").removeClass('invisible').on('click', function() {
-                            console.log('button was clicked');
+                        $("#next1").removeClass('invisible').on('click', function() {
+                            var selectSira = $(".sira");
+                            selectSira.empty()
+                    .append(
+                        "<option disabled='disabled' SELECTED>Saat Seçiniz</option>"
+                    );
+                            $.each(randList, function(i, val) {
+                                $("<option/>", {
+                                    value: val.sira_no,
+                                    text: val.saat
+                                }).appendTo(selectSira);
+                            });
+
                         });
-                        console.log(randList[0].saat);
 
-                        $.each(randList, function(i, val) {
-                            console.log('Sira No: ' + val.sira_no + '\n' + 'Saat: ' + val.saat);
-                        });
-
-
+                        // $.each(randList, function(i, val) {
+                        //     console.log('Sira No: ' + val.sira_no + '\n' + 'Saat: ' + val.saat);
+                        // });
                     }
 
                 }
@@ -103,7 +114,6 @@ $.ajax({
 function handleDataBolum(data) {
     var obj = JSON.parse(data.result[0]);
     var dept = obj.bolum_list;
-    var sonuc = obj.sonuc;
     var selectElmBolum = $(".bolum");
     $.each(dept, function(i, val) {
         $("<option/>", {
@@ -204,3 +214,9 @@ function handleDataKr(data) {
         }).appendTo(selectElmKr);
     });
 }
+
+$('.sira').on('change', function(e) {
+    if (($('#next2').hasClass('invisible'))) {
+        $('#next2').removeClass('invisible');
+    }
+});
