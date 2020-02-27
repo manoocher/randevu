@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 
-    <head>
-        <meta charset="UTF-8">
-        <title>Multi Step Bootstrap Form with animations</title>
-        <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
+<head>
+    <meta charset="ISO-8859-9">
+    <title>Multi Step Bootstrap Form with animations</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
 
 <body>
 
@@ -30,10 +31,10 @@
                     <div class="row">
                         <div class="col-12 col-lg-8 ml-auto mr-auto mb-4">
                             <div class="multisteps-form__progress">
-                                <button class="multisteps-form__progress-btn js-active" type="button" title="User Info">1. Service</button>
-                                <button class="multisteps-form__progress-btn" type="button" title="Address">2. Time</button>
-                                <button class="multisteps-form__progress-btn" type="button" title="Order Info">3. Detail</button>
-                                <button class="multisteps-form__progress-btn" type="button" title="Comments">4.Done </button>
+                                <button class="multisteps-form__progress-btn js-active" type="button" title="User Info"><i class="fa fa-user-md fa-3x"></i></button>
+                                <button class="multisteps-form__progress-btn" type="button" title="Address"><i class="fa fa-clock-o fa-3x"></i></button>
+                                <button class="multisteps-form__progress-btn" type="button" title="Order Info"><i class="fa fa-user fa-3x"></i></button>
+                                <button class="multisteps-form__progress-btn" type="button" title="Comments"> <i class="fa fa-check fa-3x"></i> </button>
                             </div>
                         </div>
                     </div>
@@ -43,28 +44,35 @@
                             <form class="multisteps-form__form" id="randevuform">
                                 <!--single form panel-->
                                 <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="scaleIn">
-                                    <h3 class="multisteps-form__title">Your User Info</h3>
+                                    <h3 class="multisteps-form__title"> Online Randevu Sistemi</h3>
                                     <div class="multisteps-form__content">
                                         <div class="form-row mt-4">
                                             <div class="col-12 col-sm-6">
                                                 <select class="custom-select mb-3 mt-4 bolum">
-                                                    <option value=" " selected="selected">Bolum Sec</option>
+                                                    <option value=" " selected="selected">Bölüm </option>
                                                 </select>
                                                 <select class="custom-select custom mb-3 mt-4 dr">
-                                                    <option value="" selected="selected">Dr Sec</option>
+                                                    <option value="" selected="selected">Doctor</option>
                                                 </select>
                                                 <select class="custom-select mb-3 mt-4 kurum">
-                                                    <option value="scaleIn" selected="selected">Kurum Sec</option>
+                                                    <option value="scaleIn" selected="selected">Kurum</option>
                                                 </select>
                                             </div>
                                             <div class="col-12 col-sm-6" id="tarih">
-                                                <div></div>
+                                                <div>
+                                                </div>
                                             </div>
+
+                                            <div class="alert alert-warning invisible norand">
+                                                <strong>Seçilen gün</strong> için uygun bir randevu bulunamadı, lütfen başka bir gün seçin.
+                                            </div>
+
+
                                         </div>
 
                                         <div class="button-row d-flex mt-4">
                                             <button class="btn btn-primary ml-auto js-btn-next invisible" id="next1" type="button" title="Next">
-                                                Next
+                                                İleriye 
                                             </button>
                                         </div>
                                     </div>
@@ -84,10 +92,10 @@
 
                                         <div class="button-row d-flex mt-4">
                                             <button class="btn btn-primary js-btn-prev" type="button" title="Prev">
-                                                Prev
+                                                geriye
                                             </button>
                                             <button class="btn btn-primary ml-auto js-btn-next invisible" id="next2" type="button" title="Next">
-                                                Next
+                                                İleriye
                                             </button>
                                         </div>
                                     </div>
@@ -97,10 +105,11 @@
                                     <div class="multisteps-form__content">
                                         <div class="form-row mt-4">
                                             <div class="col-12 col-sm-6">
-                                                <input class="multisteps-form__input form-control" type="text" placeholder="Adı" name="name" id="name" required/>
+                                                <input class="multisteps-form__input form-control" id="firstname" type="text" placeholder="Adı" name="name" required />
                                             </div>
+
                                             <div class="col-12 col-sm-6 mt-4 mt-sm-0">
-                                                <input class="multisteps-form__input form-control" type="text" placeholder="Soyadı" name="last" id="last" required/>
+                                                <input class="multisteps-form__input form-control" id="lastname" type="text" placeholder="Soyadı" name="last" required />
                                             </div>
                                         </div>
                                         <div class="form-row mt-4">
@@ -108,16 +117,16 @@
                                                 <input class="multisteps-form__input form-control" id="tcid" name="tcid" type="tel" placeholder="TC Kimlik No" required />
                                             </div>
                                             <div class="col-12 col-sm-6 mt-4 mt-sm-0">
-                                                <input class="multisteps-form__input form-control" id="telno" type="tel" pattern="/^[0-9()-]+$/" placeholder="Telefon No" name="telno" required/>
+                                                <input class="multisteps-form__input form-control" id="telno" type="tel" pattern="/^[0-9()-]+$/" placeholder="Telefon No" name="telno" required />
                                             </div>
                                         </div>
                                         <div class="form-row mt-4">
                                             <div class="col-12 col-sm-6">
-                                                <input class="multisteps-form__input form-control" id="eposta" type="email" placeholder="Eposta" name="eposta" required/>
+                                                <input class="multisteps-form__input form-control" id="eposta" type="email" placeholder="Eposta" name="eposta" required />
                                             </div>
 
                                             <div class="col-12 col-sm-6">
-                                                <select class="custom-select mb-3 mt-0 resmi_ozel" name="resmi" id="resmi"> 
+                                                <select class="custom-select mb-3 mt-0 resmi_ozel" id="resmi" name="resmi">
                                                     <option value="scaleIn" selected="selected" disabled='disabled'>
                                                         Sigorta </option>
                                                     <option value="R"> SGK </option>
@@ -131,9 +140,9 @@
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="1" id="kvkk" name="kvkk" required>
                                                 <label class="form-check-label" for="kvkk">
-                                                    <a class="kvkkbtn" >Gizlilik Sözleşmesi</a>
+                                                    <a class="kvkkbtn">Gizlilik Sözleşmesi</a>
                                                     'ni okudum, onaylıyorum.
-                                                      
+
                                                 </label>
 
                                                 <!-- Modal -->
@@ -141,17 +150,19 @@
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title
+                                                                </h5>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
                                                             </div>
                                                             <div class="modal-body">
                                                                 ...
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                                <button type="button" class="btn btn-primary">Save
+                                                                    changes</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -162,10 +173,10 @@
                                         </div>
 
                                         <div class="button-row d-flex mt-4">
-                                            <button id="next3" class="btn btn-primary ml-auto " type="button" title="Next">Randevu Al</button>
+                                            <button class="btn btn-primary js-btn-prev" type="button" title="Prev">geriye</button>
+                                            <button id="next3" class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">İleriye</button>
+
                                         </div>
-
-
 
                                     </div>
 
@@ -174,14 +185,16 @@
 
                                 <!--single form panel-->
                                 <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
-                                    <h3 class="multisteps-form__title">Additional Comments</h3>
+                                    <!-- <h3 class="multisteps-form__title">Additional Comments</h3> -->
                                     <div class="multisteps-form__content">
                                         <div class="form-row mt-4">
-                                            <textarea class="multisteps-form__textarea form-control" placeholder="Additional Comments and Requirements"></textarea>
+                                            <div class="alert alert-success align-content-center randtext">
+                                            </div>
+
                                         </div>
                                         <div class="button-row d-flex mt-4">
-                                            <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
-                                            <button class="btn btn-success ml-auto" type="button" title="Send">Send</button>
+
+                                            <button class="btn btn-success ml-auto" type="button" title="Send">İlk sayfaya dön</button>
                                         </div>
                                     </div>
                                 </div>
@@ -192,15 +205,17 @@
             </div>
         </div>
     </div>
-     <!-- partial -->
+    <!-- partial -->
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></!--<script> -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.tr.min.js"></script>
-        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-    
-        <script src="js/script.js"></script>
-        <script src="js/index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.tr.min.js">
+    </script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/script.js"></script>
+
 
 </body>
 
