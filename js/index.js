@@ -1,6 +1,6 @@
 var username = "sa";
 var password = "sa";
-var url = "http://ortadogu.meddatam.com:6950/datasnap/rest/TServerMethodrandevu/";
+var url = "#";
 var loaded = false;
 var randevuconfirm;
 
